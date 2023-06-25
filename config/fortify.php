@@ -118,7 +118,7 @@ return [
     |
     */
 
-    'views' => true,
+    'views' => TRUE,
 
     /*
     |--------------------------------------------------------------------------
@@ -138,8 +138,8 @@ return [
         Features::updateProfileInformation(),
         Features::updatePasswords(),
         Features::twoFactorAuthentication([
-            'confirm' => true,
-            'confirmPassword' => true,
+            'confirm' => TRUE,
+            'confirmPassword' => TRUE,
             // 'window' => 0,
         ]),
     ],

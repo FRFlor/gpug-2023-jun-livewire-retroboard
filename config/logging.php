@@ -32,7 +32,7 @@ return [
 
     'deprecations' => [
         'channel' => env('LOG_DEPRECATIONS_CHANNEL', 'null'),
-        'trace' => false,
+        'trace' => FALSE,
     ],
 
     /*
@@ -54,7 +54,7 @@ return [
         'stack' => [
             'driver' => 'stack',
             'channels' => ['single'],
-            'ignore_exceptions' => false,
+            'ignore_exceptions' => FALSE,
         ],
 
         'single' => [
@@ -85,7 +85,7 @@ return [
             'handler_with' => [
                 'host' => env('PAPERTRAIL_URL'),
                 'port' => env('PAPERTRAIL_PORT'),
-                'connectionString' => 'tls://'.env('PAPERTRAIL_URL').':'.env('PAPERTRAIL_PORT'),
+                'connectionString' => 'tls://' . env('PAPERTRAIL_URL') . ':' . env('PAPERTRAIL_PORT'),
             ],
         ],
 
