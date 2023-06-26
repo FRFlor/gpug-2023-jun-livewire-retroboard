@@ -12,8 +12,6 @@ return new class extends Migration
             $table->foreignId('voter_id')->constrained('users');
             $table->foreignId('card_id')->constrained('cards');
             $table->timestamps();
-
-            $table->primary('voter_id', 'card_id');
         });
     }
 
