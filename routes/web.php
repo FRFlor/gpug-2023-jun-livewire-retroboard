@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Livewire\RetroBoard;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,7 +23,5 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified'
 ])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('retro-board');
-    })->name('dashboard');
+    Route::get('/dashboard', RetroBoard::class)->name('dashboard');
 });

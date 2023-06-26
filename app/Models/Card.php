@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Card extends Model
@@ -12,8 +14,20 @@ class Card extends Model
 
     protected $fillable = ['content'];
 
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
+
     public function votes(): HasMany
     {
         return $this->hasMany(Vote::class);
+    }
+
+    public function voteCount(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => $this->votes()->count(),
+        );
     }
 }
