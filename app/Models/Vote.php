@@ -10,7 +10,7 @@ class Vote extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['voter_id', 'card_id'];
+    protected $fillable = ['voter_id', 'card_id', 'weight'];
 
     public function voter(): BelongsTo
     {

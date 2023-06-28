@@ -13,7 +13,7 @@ class CardTest extends TestCase
         $owner = User::factory()->create();
         $card = $owner->cards()->create(['content' => 'Hello world']);
 
-        $this->assertEquals(0, $card->fresh()->votes()->count());
+        $this->assertEquals(0, $card->fresh()->vote_count);
     }
 
     public function test_a_card_can_receive_votes()
@@ -24,6 +24,6 @@ class CardTest extends TestCase
 
         $anotherUser->voteFor($card);
 
-        $this->assertEquals(1, $card->refresh()->votes()->count());
+        $this->assertEquals(1, $card->refresh()->vote_count);
     }
 }

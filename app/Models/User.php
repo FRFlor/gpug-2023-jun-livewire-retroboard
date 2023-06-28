@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -47,7 +46,13 @@ class User extends Authenticatable
 
     public function voteFor(Card $card): void
     {
-        $this->votes()->create(['card_id' => $card->id]);
+        $existingVote = $this->votes()->where('card_id', $card->id)->first();
+
+        if (empty($existingVote)) {
+            $this->votes()->create(['card_id' => $card->id, 'weight' => 1]);
+            return;
+        }
+        $existingVote->increment('weight');
     }
 
     public function votes(): HasMany
