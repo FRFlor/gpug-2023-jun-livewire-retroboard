@@ -19,15 +19,16 @@ class Card extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function votes(): HasMany
-    {
-        return $this->hasMany(Vote::class);
-    }
-
     public function voteCount(): Attribute
     {
         return Attribute::make(
-            get: fn () => $this->votes()->count(),
+            get: fn() => $this->votes()
+                ->sum('weight')
         );
+    }
+
+    public function votes(): HasMany
+    {
+        return $this->hasMany(Vote::class);
     }
 }
